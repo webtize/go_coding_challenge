@@ -21,7 +21,7 @@ func ProcessNumbers(nums []int) (sum int, avg float64, max int, min int) {
 	}
 	max, min = nums[0], nums[0]
 
-	for i = 0; i < len(nums); i++ {
+	for i := 0; i < len(nums); i++ {
 		sum += nums[i]
 		if nums[i] > max {
 			max = nums[i]
