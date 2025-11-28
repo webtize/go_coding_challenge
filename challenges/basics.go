@@ -16,5 +16,21 @@ package challenges
 // Output: sum=8, avg=2.666..., max=10, min=-2
 func ProcessNumbers(nums []int) (sum int, avg float64, max int, min int) {
 	// TODO: Implement this function
-	return 0, 0.0, 0, 0
+	if len(nums) == 0 {
+		return 0, 0.0, 0, 0
+	}
+	max, min = nums[0], nums[0]
+
+	for i = 0; i < len(nums); i++ {
+		sum += nums[i]
+		if nums[i] > max {
+			max = nums[i]
+		}
+		if nums[i] < min {
+			min = nums[i]
+		}
+	}
+	avg = float64 (sum) / float64 (len(nums))
+	return
+		
 }
