@@ -1,7 +1,9 @@
 package challenges
 
 import (
+	"errors"
 	"time"
+	"strings"
 )
 
 // LogEntry represents a parsed log line.
@@ -18,5 +20,32 @@ type LogEntry struct {
 // If a log line is invalid (invalid timestamp or format), return an error.
 func ParseLogEntries(logs []string) ([]LogEntry, error) {
 	// TODO: Implement this function
-	return nil, nil
+		var result []LogEntry
+
+	for _, line := range logs {
+		parts := strings.Fields(line)
+		if len(parts) < 3 {
+			return nil, errors.New("invalid log format")
+		}
+
+		time, err := time.Parse(time.RFC3339, parts[0])
+		if err != nil {
+			
+			return nil, err
+		}
+		level := parts[1]
+		if !strings.Contains(level, ":") {
+			return nil, errors.New("missing ':'")
+		}
+
+		level = strings.Replace(level, ":", "", 1)
+			
+		result = append(result, LogEntry{
+			Timestamp: time,
+			Level: level,
+		})
+		
+	}
+	return result, nil
+}
 }
